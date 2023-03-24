@@ -1,9 +1,10 @@
-import {loadConfig, validateConfig} from "./config.js";
-import {loadCsv, readMjmlFile} from "./io.js";
-import {sendToUsers, summary} from "./sender.js";
+import gs from 'gradient-string';
 import inquirer from 'inquirer';
-import gs from "gradient-string"
-import {cli, Flags} from './cli.js';
+
+import { cli, Flags } from './cli.js';
+import { loadConfig, validateConfig } from './config.js';
+import { loadCsv, readMjmlFile } from './io.js';
+import { sendToUsers, summary } from './sender.js';
 
 const banner = () => {
     const text = `
@@ -12,24 +13,26 @@ const banner = () => {
 ██ ████ ██ ███████ ███████ ███████ ██ ████ ██ ███████ ██ ██      
 ██  ██  ██ ██   ██      ██      ██ ██  ██  ██ ██   ██ ██ ██      
 ██      ██ ██   ██ ███████ ███████ ██      ██ ██   ██ ██ ███████                                                                                                         
-    `
+    `;
 
     const coolString = gs.instagram.multiline(text);
     console.log(coolString);
-
-}
+};
 
 const continueOrExit = async () => {
-    const ans = await inquirer
-        .prompt([
-            {type: 'confirm', name: 'send', message: 'Are you sure you want to send emails?', prefix: '💡'}
-        ])
+    const ans = await inquirer.prompt([
+        {
+            type: 'confirm',
+            name: 'send',
+            message: 'Are you sure you want to send emails?',
+            prefix: '💡',
+        },
+    ]);
     if (!ans.send) {
         console.log('👋', 'Bye!');
         process.exit(0);
     }
-}
-
+};
 
 const main = async (flags: Flags) => {
     try {
@@ -49,9 +52,6 @@ const main = async (flags: Flags) => {
         console.error('💀', error.message);
         process.exit(1);
     }
-}
+};
 
 void main(cli.flags);
-
-
-

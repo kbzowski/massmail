@@ -3,26 +3,30 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
-    "require-extensions"
+    "require-extensions",
+    "prettier",
+    "simple-import-sort"
   ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:require-extensions/recommended"
+    "plugin:require-extensions/recommended",
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
-    "require-extensions/require-extensions": [
-      "error",
+    "prettier/prettier": [
+      "warn",
       {
-        "extensions": [
-          "js",
-          "jsx",
-          "ts",
-          "tsx"
-        ]
+        "singleQuote": true,
+        "trailingComma": "all",
+        "tabWidth": 4,
+        "bracketSpacing": true,
+        "printWidth": 100
       }
-    ]
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
   }
 }
