@@ -1,0 +1,23 @@
+{
+  "smtp": {
+    "host": "your.smtp.server",
+    "port": 465,
+    "secure": true,
+    "auth": {
+      "user": "email@example.com",
+      "pass": "password"
+    },
+    "from": "Some Name <email@example.com>"
+  },
+  "input": "configs/example/users.csv",
+  "delimiter": ";",
+  "content": "configs/example/example.mjml",
+  "content_type": "mjml",
+  "subject": "Email Subject",
+  "fields": {
+    "email": "Email",
+    "firstName": "Imie",
+    "lastName": "Nazwisko"
+  },
+  "sleepSeconds": 15
+}

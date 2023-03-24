@@ -1,0 +1,29 @@
+<mjml>
+    <mj-head>
+        <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500"></mj-font>
+        <mj-attributes>
+            <mj-all font-family="Montserrat, Helvetica, Arial, sans-serif"></mj-all>
+            <mj-text font-weight="400" font-size="16px" color="#000000" line-height="24px"></mj-text>
+            <mj-section padding="0px"></mj-section>
+        </mj-attributes>
+        <mj-style> .capitalize {
+            font-variant: small-caps;
+        } </mj-style>
+    </mj-head>
+    <mj-body background-color="#DFE0E2">
+        <mj-section padding="10px 20px" background-color="#FFFFFF">
+            <mj-column>
+            </mj-column>
+        </mj-section>
+        <mj-section padding="0 20px 5px 20px" background-color="#FFFFFF">
+            <mj-column width="100%" padding="0 20px 0 20px">
+                <mj-text align="left" padding-top="10px" padding-bottom="0px" padding-left="0px">
+                    <strong>{Szanowny} {Title}</strong>
+                </mj-text>
+                <mj-text align="left" padding-top="0px" padding-left="0px" font-weight="500">
+                    <strong>{Imie} {Nazwisko}</strong>
+                </mj-text>
+            </mj-column>
+        </mj-section>
+    </mj-body>
+</mjml>

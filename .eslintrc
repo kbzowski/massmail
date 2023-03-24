@@ -1,0 +1,28 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "require-extensions"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:require-extensions/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
+    "require-extensions/require-extensions": [
+      "error",
+      {
+        "extensions": [
+          "js",
+          "jsx",
+          "ts",
+          "tsx"
+        ]
+      }
+    ]
+  }
+}
