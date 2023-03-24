@@ -17,7 +17,11 @@ export const schema = z.object({
     content: z.string(),
     content_type: z.enum(['mjml', 'text']),
     subject: z.string(),
-    fields: z.object({ email: z.string(), firstName: z.string(), lastName: z.string() }),
+    fields: z.object({
+        email: z.string(),
+        firstName: z.optional(z.string()),
+        lastName: z.optional(z.string()),
+    }),
     sleepSeconds: z.number(),
 });
 
