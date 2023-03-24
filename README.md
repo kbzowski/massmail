@@ -16,3 +16,8 @@ yarn build
 mass --help
 mass --config mass --config .\configs\example\config-sample.json --test
 ```
+
+## Contribution
+
+We welcome contributions from everyone! If you have an idea for a feature, found a bug or a typo, or have a suggestion
+for improving the project, please feel free to open an issue or submit a pull request.
