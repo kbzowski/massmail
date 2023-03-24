@@ -4,11 +4,14 @@ import {convert} from "html-to-text";
 import {sleep} from "./helpers.js";
 import {inflect} from "inflection";
 import chalk from "chalk";
+import {Value} from './types.js';
+import {Options} from "nodemailer/lib/mailer";
 
-export const personalizeContent = async (content: string, fields: string[]): Promise<string> => {
+export const personalizeContent = async (content: string, fields: Record<string, Value>): Promise<string> => {
     let result = content;
     for (const [key, value] of Object.entries(fields)) {
-        result = result.replaceAll(`{${key}}`, value.trim());
+        const stringValue = value?.toString().trim() ?? '';
+        result = result.replaceAll(`{${key}}`, stringValue);
     }
     return result;
 }
@@ -17,9 +20,10 @@ export const createTransport = (config: Config) => {
     return nodemailer.createTransport(config.smtp);
 }
 
-export const summary = (users: string[][], config: Config, isTest: boolean) => {
+export const summary = (users: Record<string, Value>[], config: Config, isTest: boolean) => {
     if (isTest) {
-        console.log('⚠️', chalk.redBright('Working in test mode. Sending only to the first user.'));
+        const firstEmail = users[0][config.fields.email];
+        console.log('⚠️', chalk.redBright(`Working in test mode. Sending only to the first user: ${firstEmail}`));
     } else {
         console.log('ℹ️', `Sending: ${users.length} ${inflect('email', users.length)}`);
     }
@@ -29,13 +33,26 @@ export const summary = (users: string[][], config: Config, isTest: boolean) => {
     console.log('ℹ️', `Email content: ${config.content}`);
 }
 
-export const sendToUsers = async (users: string[][], content: string, config: Config): Promise<void> => {
+const printUser = (user: Record<string, Value>, config: Config) => {
+    const fn = config.fields.firstName;
+    const ln = config.fields.lastName;
+    const e = config.fields.email;
+
+    if (user[fn] && user[ln]) {
+        const name = `${user[fn]} ${user[ln]}`
+        console.log('➡️', `${name} <${user[e]}>`);
+    } else {
+        console.log('➡️', user[e]);
+    }
+}
+
+export const sendToUsers = async (users: Record<string, Value>[], content: string, config: Config): Promise<void> => {
     const transporter = createTransport(config);
 
     for (const user of users) {
+        printUser(user, config);
         await sleep(config.sleepSeconds);
-        const email = user[config.fields.email as any];
-        const name = `${user[config.fields.firstName as any]} ${user[config.fields.lastName as any]}`
+        const email = user[config.fields.email] as string
         const personalizedContent = await personalizeContent(content, user);
         const personalizedText = convert(personalizedContent);
 
@@ -48,7 +65,6 @@ export const sendToUsers = async (users: string[][], content: string, config: Co
             text: personalizedText
         };
 
-        console.log('➡️', `${name} <${email}>`);
         await transporter.sendMail(mailOptions);
     }
 }

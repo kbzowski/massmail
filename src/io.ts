@@ -2,6 +2,7 @@ import fs from "node:fs";
 import {parse} from 'csv-parse/sync';
 import mjml from 'mjml';
 import {Config} from './config.js';
+import {Value} from './types.js';
 
 export const fileExists = async (filePath: string): Promise<boolean> => {
     try {
@@ -12,7 +13,7 @@ export const fileExists = async (filePath: string): Promise<boolean> => {
     }
 }
 
-export const loadCsv = async (config: Config): Promise<string[][]> => {
+export const loadCsv = async (config: Config): Promise<Record<string, Value>[]> => {
     const input = fs.readFileSync(config.input, "utf-8");
     const data = parse(input, {
         columns: true,
