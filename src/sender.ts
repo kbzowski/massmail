@@ -44,7 +44,7 @@ const printUser = (user: Record<string, Value>, config: Config) => {
     const ln = config.fields.lastName;
     const e = config.fields.email;
 
-    if (user[fn] && user[ln]) {
+    if (fn && ln && user[fn] && user[ln]) {
         const name = `${user[fn]} ${user[ln]}`;
         console.log('➡️', `${name} <${user[e]}>`);
     } else {
