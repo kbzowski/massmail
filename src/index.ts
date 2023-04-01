@@ -42,6 +42,12 @@ const main = async (flags: Flags) => {
         let users = await loadCsv(config);
         users = flags.test ? users.slice(0, 1) : users;
 
+        if (flags.limit) {
+            users = users.filter((user, row) =>
+                flags.limit?.includes(user[config.fields.email] as string),
+            );
+        }
+
         const content = await readMjmlFile(config);
         summary(users, config, flags.test);
         await continueOrExit();
