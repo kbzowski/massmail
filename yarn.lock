@@ -2452,6 +2452,7 @@ __metadata:
     prettier: ^2.8.7
     rimraf: ^4.4.1
     typescript: ^5.0.2
+    voici.js: ^2.0.0
     zod: ^3.21.4
   languageName: unknown
   linkType: soft
@@ -4155,6 +4156,16 @@ __metadata:
     spdx-correct: ^3.0.0
     spdx-expression-parse: ^3.0.0
   checksum: 35703ac889d419cf2aceef63daeadbe4e77227c39ab6287eeb6c1b36a746b364f50ba22e88591f5d017bc54685d8137bc2d328d0a896e4d3fd22093c0f32a9ad
+  languageName: node
+  linkType: hard
+
+"voici.js@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "voici.js@npm:2.0.0"
+  dependencies:
+    chalk: ^4.1.2
+    lodash: ^4.17.21
+  checksum: 8562179fe41a71ca2dadf9854c40477d16b47e65bdec9a6f6783a3cfe8faadb37a5fdade2a0f35addf6f3682287dd715b0f8423e275bc2ecf0e2fa0a925b8b5e
   languageName: node
   linkType: hard
 

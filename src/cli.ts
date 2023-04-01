@@ -7,8 +7,9 @@ export const cli = meow(
 
 	Options
 	  --config, -c  Config file path
-	  --test, -t  Send only to first user
-	  --limit, -l  Send only to this email (can be used multiple times)
+	  --test, -t    Send only to first user
+	  --limit, -l   Send only to this email (can be used multiple times)
+	  --show, -s    Show addresses that would be sent to
 
 	Examples
 	  $ node . --config ./config.json --test
@@ -33,6 +34,11 @@ export const cli = meow(
                 type: 'string',
                 alias: 'l',
                 isMultiple: true,
+            },
+            show: {
+                type: 'boolean',
+                alias: 's',
+                default: false,
             },
         },
     },

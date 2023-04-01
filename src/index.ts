@@ -1,5 +1,6 @@
 import gs from 'gradient-string';
 import inquirer from 'inquirer';
+import { Table } from 'voici.js';
 
 import { cli, Flags } from './cli.js';
 import { loadConfig, validateConfig } from './config.js';
@@ -42,10 +43,16 @@ const main = async (flags: Flags) => {
         let users = await loadCsv(config);
         users = flags.test ? users.slice(0, 1) : users;
 
-        if (flags.limit) {
-            users = users.filter((user, row) =>
+        if (flags.limit && flags.limit.length > 0) {
+            users = users.filter((user) =>
                 flags.limit?.includes(user[config.fields.email] as string),
             );
+        }
+
+        if (flags.show) {
+            console.log('🧑', 'Users:');
+            const table = new Table(users);
+            table.print();
         }
 
         const content = await readMjmlFile(config);
