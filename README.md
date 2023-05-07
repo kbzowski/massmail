@@ -19,8 +19,11 @@ mass --config mass --config .\configs\example\config-sample.json --test
 
 ## Roadmap
 
-* Add support for raw text emails
+~~* Add support for raw text emails~~
+
 * Add support for attachments
+* Validate if all substitutions are replaced in the email template
+* Add support for xlsx files
 
 ## Contributing
 

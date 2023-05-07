@@ -11,6 +11,7 @@ export const schema = z.object({
         secure: z.boolean(),
         auth: z.object({ user: z.string(), pass: z.string() }),
         from: z.string(),
+        replyTo: z.optional(z.array(z.string().email())),
     }),
     input: z.string(),
     delimiter: z.string(),

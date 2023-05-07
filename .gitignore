@@ -141,6 +141,10 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-configs/*.csv
+configs/*/*.csv
+configs/*/*.json
+configs/*/*.mjml
+configs/*/*.txt
 !configs/example/*.csv
-
+!configs/example/*.mjml
+!configs/example/*.json

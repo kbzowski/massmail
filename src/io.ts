@@ -37,3 +37,7 @@ export const readMjmlFile = async (config: Config): Promise<string> => {
     const source = mjml(fs.readFileSync(config.content, 'utf8'), { keepComments: false });
     return source.html;
 };
+
+export const readTextFile = async (config: Config): Promise<string> => {
+    return fs.readFileSync(config.content, 'utf8');
+};

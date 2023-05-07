@@ -7,8 +7,8 @@ export const cli = meow(
 
 	Options
 	  --config, -c  Config file path
-	  --test, -t    Send only to first user
-	  --limit, -l   Send only to this email (can be used multiple times)
+	  --test, -t    Send only to the first user on the list
+	  --limit, -l   Send only to this email (can be used multiple times). Email must be in the csv file.
 	  --show, -s    Show addresses that would be sent to
 
 	Examples
@@ -22,22 +22,22 @@ export const cli = meow(
         flags: {
             config: {
                 type: 'string',
-                alias: 'c',
+                shortFlag: 'c',
                 isRequired: true,
             },
             test: {
                 type: 'boolean',
-                alias: 't',
+                shortFlag: 't',
                 default: false,
             },
             limit: {
                 type: 'string',
-                alias: 'l',
+                shortFlag: 'l',
                 isMultiple: true,
             },
             show: {
                 type: 'boolean',
-                alias: 's',
+                shortFlag: 's',
                 default: false,
             },
         },

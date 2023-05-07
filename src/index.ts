@@ -4,7 +4,7 @@ import { Table } from 'voici.js';
 
 import { cli, Flags } from './cli.js';
 import { loadConfig, validateConfig } from './config.js';
-import { loadCsv, readMjmlFile } from './io.js';
+import { loadCsv, readMjmlFile, readTextFile } from './io.js';
 import { sendToUsers, summary } from './sender.js';
 
 const banner = () => {
@@ -55,7 +55,13 @@ const main = async (flags: Flags) => {
             table.print();
         }
 
-        const content = await readMjmlFile(config);
+        let content = '';
+        if (config.content_type === 'mjml') {
+            content = await readMjmlFile(config);
+        } else if (config.content_type === 'text') {
+            content = await readTextFile(config);
+        }
+
         summary(users, config, flags.test);
         await continueOrExit();
 

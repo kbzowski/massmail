@@ -63,15 +63,16 @@ export const sendToUsers = async (
         printUser(user, config);
         await sleep(config.sleepSeconds);
         const email = user[config.fields.email] as string;
-        const personalizedContent = await personalizeContent(content, user);
-        const personalizedText = convert(personalizedContent);
+
+        const pContent = await personalizeContent(content, user);
 
         const mailOptions = {
             from: config.smtp.from,
             to: email,
             subject: config.subject,
-            html: personalizedContent,
-            text: personalizedText,
+            html: config.content_type == 'mjml' ? pContent : undefined,
+            text: config.content_type == 'mjml' ? convert(pContent) : pContent,
+            replyTo: config.smtp.replyTo,
         };
 
         await transporter.sendMail(mailOptions);
