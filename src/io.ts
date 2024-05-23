@@ -23,10 +23,10 @@ export const loadCsv = async (config: Config): Promise<Record<string, Value>[]> 
         delimiter: config.delimiter,
     });
 
-    // check if all rows have email field
-    for (const row of data) {
-        if (!row[config.fields.email]) {
-            throw new Error('Email field is missing. Check config or csv file.');
+    // check if all rows have email field show number which row is missing
+    for (let i = 0; i < data.length; i++) {
+        if (!data[i][config.fields.email]) {
+            throw new Error(`Email field is missing on row ${i + 1}. Check config or csv file.`);
         }
     }
 
@@ -34,7 +34,9 @@ export const loadCsv = async (config: Config): Promise<Record<string, Value>[]> 
 };
 
 export const readMjmlFile = async (config: Config): Promise<string> => {
-    const source = mjml(fs.readFileSync(config.content, 'utf8'), { keepComments: false });
+    const source = mjml(fs.readFileSync(config.content, 'utf8'), {
+        keepComments: false,
+    });
     return source.html;
 };
 

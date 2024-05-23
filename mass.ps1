@@ -1,1 +1,1 @@
-node dist/index.js $args
+node  --trace-deprecation dist/index.js $args
