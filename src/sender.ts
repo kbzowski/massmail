@@ -91,7 +91,7 @@ export const sendToUsers = async (
         mailOptions.html = config.content_type == 'mjml' ? pContent : undefined;
         mailOptions.text = config.content_type == 'mjml' ? convert(pContent) : pContent;
 
-        // await transporter.sendMail(mailOptions);
+        await transporter.sendMail(mailOptions);
     }
     spinner.succeed(' Task completed');
 };
